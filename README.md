@@ -33,11 +33,11 @@ This project implements a CART-based classification system for fashion recommend
 
 ### Key Features
 
-✅ **Systematic ML Pipeline**: Modular architecture separating preprocessing, feature engineering, modeling, and evaluation
-✅ **Advanced Preprocessing**: Intelligent missing value imputation based on feature semantics
-✅ **Feature Engineering**: Automated creation of interaction features and domain-specific aggregations
-✅ **Hyperparameter Optimization**: GridSearchCV and RandomizedSearchCV for model tuning
-✅ **Comprehensive Evaluation**: Multiple metrics, cross-validation, error analysis
+✅ **Systematic ML Pipeline**: Modular architecture separating preprocessing, feature engineering, modeling, and evaluation <br>
+✅ **Advanced Preprocessing**: Intelligent missing value imputation based on feature semantics<br>
+✅ **Feature Engineering**: Automated creation of interaction features and domain-specific aggregations<br>
+✅ **Hyperparameter Optimization**: GridSearchCV and RandomizedSearchCV for model tuning<br>
+✅ **Comprehensive Evaluation**: Multiple metrics, cross-validation, error analysis<br>
 ✅ **Visualization Suite**: Decision tree plots, feature importance, confusion matrices, performance comparisons
 
 ### Model Performance

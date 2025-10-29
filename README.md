@@ -69,11 +69,14 @@ zero-party-fashion-recommender/
 │   ├── feature_engineering.py    # Feature transformation and scaling
 │   ├── models.py                 # Model training and hyperparameter tuning
 │   ├── evaluation.py             # Model evaluation and metrics
-│   └── visualization.py          # Plotting and visualization
+│   ├── visualization.py          # Plotting and visualization
+│   └── generate_sample_data.py   # Sample data generator (NEW)
 │
 ├── data/                          # Data directory (gitignored)
 │   ├── raw/                      # Raw data files
-│   │   └── rawdata_무채색유채색 통합.xlsx  # Main dataset
+│   │   ├── fashion_survey_integrated.csv      # Integrated dataset
+│   │   ├── fashion_survey_achromatic.csv      # Achromatic socks only
+│   │   └── fashion_survey_color.csv           # Chromatic socks only
 │   └── processed/                # Processed data outputs
 │       └── cleaned_data.csv      # Cleaned and preprocessed data
 │
@@ -96,10 +99,14 @@ zero-party-fashion-recommender/
 │       └── model_comparison.csv
 │
 └── notebooks/                     # Jupyter notebooks for exploration
-    ├── total_0904.ipynb          # Main experiment (90% RF accuracy)
-    ├── dt_Achrom.ipynb           # Black & white socks analysis
-    ├── dt_color.ipynb            # Color socks analysis
-    └── ...                       # Other exploratory notebooks
+    ├── 01_data_exploration.ipynb          # Data exploration and EDA
+    ├── 02_decision_tree_model.ipynb       # Model training and evaluation
+    ├── 03_color_preference_analysis.ipynb # Achromatic vs chromatic analysis
+    └── legacy/                            # Original research notebooks
+        ├── total_0904.ipynb              # Main experiment (90% RF accuracy)
+        ├── dt_Achrom.ipynb               # Black & white socks analysis
+        ├── dt_color.ipynb                # Color socks analysis
+        └── ...                           # Other exploratory notebooks
 ```
 
 ### Directory Conventions
@@ -261,20 +268,64 @@ pip install -r requirements.txt
 
 ### Data Preparation
 
-Place your data file in the following location:
-```
-data/raw/rawdata_무채색유채색 통합.xlsx
+**Option 1: Generate Sample Data (Recommended for Testing)**
+
+```bash
+# Generate synthetic survey data (~450 samples)
+python src/generate_sample_data.py
 ```
 
-**Data Format Requirements:**
-- Excel format (`.xlsx`)
+This creates three datasets in `data/raw/`:
+- `fashion_survey_integrated.csv` - Full dataset with all preferences
+- `fashion_survey_achromatic.csv` - Black & white sock preferences only
+- `fashion_survey_color.csv` - Colored sock preferences only
+
+**Option 2: Use Your Own Data**
+
+Place your data file in `data/raw/` with the following format requirements:
+- CSV format (`.csv`)
 - Must contain `target_group` column (4 classes: 1, 2, 3, 4)
-- Should include MBTI features: `I_E`, `S_N`, `T_F`, `J_P`
-- 60+ survey response columns (demographics, psychographics, preferences)
+- Should include MBTI features: `mbti_e_i`, `mbti_s_n`, `mbti_t_f`, `mbti_j_p`
+- Include demographics: `age`, `gender`, `height`
+- Include fashion attitudes: `individuality_orientation`, `fashion_involvement`, etc.
+- Include sock preferences: `achromatic_sock_*` and/or `color_sock_*` columns
 
 ---
 
 ## 💻 Usage
+
+### Quick Start with Jupyter Notebooks
+
+The easiest way to get started is through the interactive Jupyter notebooks:
+
+```bash
+# Start Jupyter Lab
+jupyter lab
+
+# Navigate to notebooks/ and run in order:
+# 1. 01_data_exploration.ipynb       - Explore the data
+# 2. 02_decision_tree_model.ipynb    - Train models
+# 3. 03_color_preference_analysis.ipynb - Analyze color preferences
+```
+
+**What each notebook does:**
+
+1. **Data Exploration** (`01_data_exploration.ipynb`)
+   - Load and visualize survey data
+   - Analyze demographics, MBTI distributions, fashion attitudes
+   - Examine sock preference patterns
+   - Generate correlation heatmaps
+
+2. **Decision Tree Model** (`02_decision_tree_model.ipynb`)
+   - Train Decision Tree and Random Forest classifiers
+   - Evaluate model performance with confusion matrices
+   - Analyze feature importances
+   - Save trained models for deployment
+
+3. **Color Preference Analysis** (`03_color_preference_analysis.ipynb`)
+   - Separate analysis for achromatic (black & white) vs chromatic (colored) socks
+   - Compare prediction accuracy between color categories
+   - Identify characteristic differences between preference groups
 
 ### Basic Training (Default Settings)
 

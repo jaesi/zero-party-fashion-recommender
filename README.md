@@ -572,28 +572,7 @@ class VisualizationConfig:
 4. **Sample Size**: Limited data may constrain generalization
    - **Solution**: Data augmentation, transfer learning from similar domains
 
----
 
-## 🤝 Contributing
-
-For research collaborations or questions about the methodology:
-1. Open an issue for bugs or feature requests
-2. Submit pull requests for improvements
-3. Cite this work if used in publications
-
----
-
-## 📜 License
-
-[Add your license here - MIT, Apache 2.0, etc.]
-
----
-
-## 📧 Contact
-
-[Add contact information for research inquiries]
-
----
 
 **Project Status**: Research Implementation
 **Last Updated**: 2024
